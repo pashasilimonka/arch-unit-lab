@@ -18,15 +18,19 @@ import java.util.List;
 
 @Service
 public class ItemService {
-    @Autowired
-    private ItemRepository repository;
 
-    private List<Item> itemList = Arrays.asList(
-            new Item("1","Item 1","0000001","Item 1 for arch unit test"),
-            new Item("2","Item 2","0000002","Item 2 for arch unit test"),
-            new Item("3","Item 3","0000003","Item 3 for arch unit test"),
-            new Item("4","Item 4","0000004","Item 4 for arch unit test"),
-            new Item("5","Item 5","0000005","Item 5 for arch unit test")
+    private final ItemRepository repository;
+
+    @Autowired
+    public ItemService(ItemRepository repository){
+        this.repository=repository;
+    }
+    private final List<Item> itemList = Arrays.asList(
+            new Item("1","Item 1","0000001","Item 1 for arch unit"),
+            new Item("2","Item 2","0000002","Item 2 for arch unit "),
+            new Item("3","Item 3","0000003","Item 3 for arch unit "),
+            new Item("4","Item 4","0000004","Item 4 for arch unit "),
+            new Item("5","Item 5","0000005","Item 5 for arch unit ")
     );
 
     @PostConstruct

@@ -7,6 +7,7 @@ package edu.sylymonka.arch.Controller;/*
 */
 
 import edu.sylymonka.arch.Model.Item;
+import edu.sylymonka.arch.Repository.ItemRepository;
 import edu.sylymonka.arch.Service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,24 +15,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("api/v1/items/")
 public class ItemController {
-    @Autowired
-    private ItemService service;
 
-    @GetMapping("api/v1/items")
+    private final ItemService service;
+    @Autowired
+    public ItemController(ItemService service){
+        this.service=service;
+    }
+    @GetMapping("")
     public List<Item> getAllItems(){
         return service.getAllItems();
     }
 
-    @GetMapping("api/v1/items/{id}")
+    @GetMapping("{id}")
     public Item getItemById(@PathVariable String id){
         return service.getItemById(id);
     }
-    @PostMapping("api/v1/items")
+    @PostMapping("")
     public Item addNewItem(@RequestBody Item item){
         return service.createItem(item);
     }
-    @DeleteMapping("api/v1/items/{id}")
+    @DeleteMapping("{id}")
     public void deleteItem(@PathVariable String id){
         service.deleteItem(id);
     }
